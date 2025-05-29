@@ -1,25 +1,19 @@
 import requests
 
 
-class Point:
-    def __init__(self, apikey: str, address: str) -> None:
-        self.apikey = apikey
+def get_coords(apikey, address):
+    base_url = "https://geocode-maps.yandex.ru/1.x"
+    response = requests.get(base_url, params={
+        "geocode": address,
+        "apikey": apikey,
+        "format": "json",
+    })
+    response.raise_for_status()
+    found_places = response.json()['response']['GeoObjectCollection']['featureMember']
 
-        base_url = "https://geocode-maps.yandex.ru/1.x"
-        response = requests.get(base_url, params={
-            "geocode": address,
-            "apikey": self.apikey,
-            "format": "json",
-        })
-        response.raise_for_status()
-        found_places = response.json()['response']['GeoObjectCollection']['featureMember']
+    if not found_places:
+        return None
 
-        if not found_places:
-            return None
-
-        most_relevant = found_places[0]
-        lon, lat = most_relevant['GeoObject']['Point']['pos'].split(" ")
-        self.lat, self.lon = lat, lon # latitude, longitude
-    
-    def unpack(self) -> tuple[float, float]:
-        return self.lat, self.lon
+    most_relevant = found_places[0]
+    lon, lat = most_relevant['GeoObject']['Point']['pos'].split(" ")
+    return lat, lon # latitude, longitude
