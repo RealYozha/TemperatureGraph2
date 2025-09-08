@@ -36,7 +36,7 @@ Then, edit these variables in `main.py`:
 
 ```python
 city_name = "YOUR CITY NAME HERE"
-date_range = DateRange("START DATE", "END DATE") # date comes in format YYYY-MM-DD
+date_range = ("YYYY-MM-DD", "YYYY-MM-DD")
 ```
 
 ## Running
