@@ -1,5 +1,8 @@
 # Temperature Graph 2
 
+![`v1.2.1`](https://img.shields.io/badge/version-1.2.1-green)
+![`latest release: stable`](https://img.shields.io/badge/latest_release-stable-lime)
+
 A program fully written in Python, shows a temperature graph via APIs.
 
 ## Installation
@@ -36,7 +39,8 @@ Then, edit these variables in `main.py`:
 
 ```python
 city_name = "YOUR CITY NAME HERE"
-date_range = ("YYYY-MM-DD", "YYYY-MM-DD")
+start_date = "YYYY-MM-DD"
+end_date = "YYYY-MM-DD"
 ```
 
 ## Running
